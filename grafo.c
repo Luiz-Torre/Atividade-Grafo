@@ -40,22 +40,25 @@ void ImprimirGrafo(lista **g, int n){
     }
 }
 void MostraGraus(lista **g,int tam){
-    int vetE[tam];
-    int vetS[tam];
-    for(int i = 0; i< tam;i++){
+    int vetE[tam+1];
+    int vetS[tam+1];
+    for(int i = 0; i< tam+1;i++){
         vetE[i] = 0;
         vetS[i] = 0;
     }
-    for (int i = 0; i < tam; i++) {
-        for (int j = 0; j < tam; j++) {
-            if (g[i+1]->destino == j+1){
-                vetS[i]+= 1;
-                vetE[j]+= 1;
+    for (int i = 1; i <= tam; i++) {
+        while (g[i] != NULL){
+            for (int j = 1; j <= tam; j++) {
+                if (g[i]->destino == j){
+                    vetS[i]+= 1;
+                    vetE[j]+= 1;
+                }
             }
+            g[i] = g[i]->prox;
         }
     }
-    for (int i = 0; i < tam; ++i) {
-        printf("Vertice %d\n", (i+1));
+    for (int i = 1; i < tam+1; ++i) {
+        printf("Vertice %d\n", (i));
         printf("gs (Grau de saida): %d\n",vetS[i]);
         printf("ge (Grau de entrada): %d\n",vetE[i]);
     }
