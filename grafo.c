@@ -155,7 +155,7 @@ int main(){
 
                 break;
             case 6:
-                exit();
+                exit(0);
                 break;
             default:
                 printf("\nValor Invalido");
