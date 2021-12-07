@@ -7,7 +7,6 @@ typedef struct lista {
     struct lista *prox;
 }lista;
 
-
 void inicializar(lista **g, int n){
     for(int i = 0; i<= n;i++){
         g[i] = NULL;
@@ -24,8 +23,6 @@ lista *InserirLista(lista *l, int d, int c){
 void InserirAresta(lista **g, int origem, int destino, int custo){
     g[origem] = InserirLista(g[origem], destino, custo);
 }
-
-
 
 void ImprimirLista(lista *l){
     if(l!= NULL){
