@@ -41,22 +41,24 @@ void ImprimirGrafo(lista **g, int n){
 }
 void MostraGraus(lista **g,int tam){
     int vetE[tam+1];
+    lista **p = g;
     int vetS[tam+1];
     for(int i = 0; i< tam+1;i++){
         vetE[i] = 0;
         vetS[i] = 0;
     }
     for (int i = 1; i <= tam; i++) {
-        while (g[i] != NULL){
+        while (p[i] != NULL){
             for (int j = 1; j <= tam; j++) {
-                if (g[i]->destino == j){
+                if (p[i]->destino == j){
                     vetS[i]+= 1;
                     vetE[j]+= 1;
                 }
             }
-            g[i] = g[i]->prox;
+            p[i] = p[i]->prox;
         }
     }
+    free(p);
     for (int i = 1; i < tam+1; ++i) {
         printf("Vertice %d\n", (i));
         printf("gs (Grau de saida): %d\n",vetS[i]);
@@ -66,6 +68,7 @@ void MostraGraus(lista **g,int tam){
 
 void excluirAresta(lista **g, int aux, int aux_dest){
     lista *atual = g[aux];
+
     lista *lista_aux;
 
     if (atual -> destino == aux_dest) {
@@ -89,37 +92,34 @@ void excluirAresta(lista **g, int aux, int aux_dest){
 
 void TestaCompleta(lista **g,int tam){
     int vetE[tam+1];
+    lista **p = g;
     int vetS[tam+1];
     for(int i = 0; i< tam+1;i++){
         vetE[i] = 0;
         vetS[i] = 0;
     }
     for (int i = 1; i <= tam; i++) {
-        while (g[i] != NULL){
+        while (p[i] != NULL){
             for (int j = 1; j <= tam; j++) {
-                if (g[i]->destino == j){
+                if (p[i]->destino == j){
                     vetS[i]+= 1;
                     vetE[j]+= 1;
                 }
             }
-            g[i] = g[i]->prox;
+            p[i] = p[i]->prox;
         }
     }
 
-    for (int i = 1; i < tam+1; ++i) {
-        printf("Vertice %d\n", (i));
-        printf("gs (Grau de saida): %d\n",vetS[i]);
-        printf("ge (Grau de entrada): %d\n",vetE[i]);
-    }
-
-
-    for(int i = 1;i <= tam+1; i++) {
-        if(vetE[i] != (tam) || vetS[i] != (tam)){
+    for(int i = 1;i <= tam; i++) {
+        if(vetE[i] != (tam -1) || vetS[i] != (tam - 1)){
             printf("O grafo não é completo");
+            free(p);
+
             return ;
         }
     }
         puts("O grafo é completo");
+        free(p);
 }
 
 int main(){
