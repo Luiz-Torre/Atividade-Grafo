@@ -16,7 +16,7 @@ void inicializar(lista **g, int n){
 lista *InserirLista(lista *l, int d, int c){
     lista *no = (lista *)malloc(sizeof(lista));
     no -> destino = d; no -> custo = c;
-    no -> prox = 1;
+    no -> prox = l;
     return no;
 }
 
