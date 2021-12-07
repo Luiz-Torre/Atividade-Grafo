@@ -87,6 +87,41 @@ void excluirAresta(lista **g, int aux, int aux_dest){
     puts("O valor não se encontra em nenhum no");
 }
 
+void TestaCompleta(lista **g,int tam){
+    int vetE[tam+1];
+    int vetS[tam+1];
+    for(int i = 0; i< tam+1;i++){
+        vetE[i] = 0;
+        vetS[i] = 0;
+    }
+    for (int i = 1; i <= tam; i++) {
+        while (g[i] != NULL){
+            for (int j = 1; j <= tam; j++) {
+                if (g[i]->destino == j){
+                    vetS[i]+= 1;
+                    vetE[j]+= 1;
+                }
+            }
+            g[i] = g[i]->prox;
+        }
+    }
+
+    for (int i = 1; i < tam+1; ++i) {
+        printf("Vertice %d\n", (i));
+        printf("gs (Grau de saida): %d\n",vetS[i]);
+        printf("ge (Grau de entrada): %d\n",vetE[i]);
+    }
+
+
+    for(int i = 1;i <= tam+1; i++) {
+        if(vetE[i] != (tam) || vetS[i] != (tam)){
+            printf("O grafo não é completo");
+            return ;
+        }
+    }
+        puts("O grafo é completo");
+}
+
 int main(){
     int var, tam;
     int origem, destino, custo, aux, aux_dest;
@@ -124,10 +159,10 @@ int main(){
                 MostraGraus(g,tam);
                 break;
             case 5:
-
+                TestaCompleta(g,tam);
                 break;
             case 6:
-                exit();
+                exit(0);
                 break;
             default:
                 printf("\nValor Invalido");
@@ -139,9 +174,4 @@ int main(){
     return 0;
 }
 
-//1 1 2 4
-//1 2 1 7
-//1 1 3 9
-//1 3 1 10
-//1 2 3 11
-//1 3 2 3
+//3 1 1 2 4 1 2 1 7 1 1 3 9 1 3 1 10 1 2 3 11 1 3 2 3
