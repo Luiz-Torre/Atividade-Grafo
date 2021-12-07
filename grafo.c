@@ -1,6 +1,5 @@
 #include <stdio.h>
-
-
+#include <stdlib.h>
 
 typedef struct lista {
     int destino;
@@ -38,7 +37,7 @@ void ImprimirLista(lista *l){
 
 void ImprimirGrafo(lista **g, int n){
     int i;
-    printf("Grafo")
+    printf("Grafo");
     for(i = 1;i<n;i++){
         printf("\n\t%d", i);
         ImprimirLista(g[i]);
