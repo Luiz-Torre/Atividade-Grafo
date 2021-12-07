@@ -65,25 +65,22 @@ void MostraGraus(lista **g,int tam){
 }
 
 void excluirAresta(lista **g, int aux, int aux_dest){
-    lista *aux_lista;
     lista *atual = g[aux];
-    if(atual -> destino == aux_dest){
-            g[aux]  = g[aux] -> prox;
-            free(atual);
-            return ;
-        }
+    lista *lista_aux;
 
-
-    while(atual != NULL){
-
-        if(atual -> destino == aux_dest){
-            g[aux]  = g[aux] -> prox;
-            free(atual);
-            
-        }
-        else if(atual -> destino != aux_dest && atual -> prox != NULL){
-            aux_lista = atual;
-            atual = atual -> prox;
+    if (atual -> destino == aux_dest) {
+        g[aux] = g[aux] -> prox;
+        free(atual);
+        return;
+    }
+    
+    while (atual){
+        lista_aux = atual;
+        atual = atual -> prox;
+        if (atual && atual -> destino == aux_dest){
+        lista_aux -> prox = atual -> prox;
+        free(atual);
+        return;
         }
     }
     
@@ -111,7 +108,8 @@ int main(){
                 scanf("%d", &destino);
                 puts("Informe qual o custo: \n");
                 scanf("%d", &custo);
-                InserirAresta(g, origem, destino, custo);                break;
+                InserirAresta(g, origem, destino, custo);  
+                break;
             case 2:
                 puts("Informe de qual no de origem que você deseja excluir a arestra");
                 scanf("%d", &aux);
