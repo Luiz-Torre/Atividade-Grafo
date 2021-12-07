@@ -40,15 +40,44 @@ void ImprimirGrafo(lista **g, int n){
     }
 }
 
+void excluirAresta(lista **g, int aux, int aux_dest){
+    lista *aux_lista;
+    lista *atual = g[aux];
+    if(atual -> destino == aux_dest){
+            g[aux]  = g[aux] -> prox;
+            free(atual);
+            return ;
+        }
+
+
+    while(atual != NULL){
+
+        if(atual -> destino == aux_dest){
+            g[aux]  = g[aux] -> prox;
+            free(atual);
+            
+        }
+        else if(atual -> destino != aux_dest && atual -> prox != NULL){
+            aux_lista = atual;
+            atual = atual -> prox;
+        }
+    }
+    
+    puts("O valor não se encontra em nenhum no");
+}
+
+
+
+
 int main(){
     int var, tam;
-    int origem, destino, custo;
+    int origem, destino, custo, aux, aux_dest;
     lista **g;
     puts("Informe quantos nós terá seu grafo: \n");
     scanf("%d", &tam);
     g = (lista**)malloc((tam+1)*sizeof(lista*));
     inicializar(g, tam);
-    printf("Informe: \n 1- Inserir Arestra\n 2- Remover uma aresta\n 3- Imprimir grafo\n 4- Imprimir os graus de entrada e saída de um vértice\n 5- Verificar se um grafo é completo\n 6- Imprimir todos os caminhos entre uma origem e um destino\n 7- Imprimir o caminho mais curto\n 8- Imprimir o caminho de menor custo\n 9- Sair");
+    printf("Informe: \n 1- Inserir Arestra\n 2- Remover uma aresta\n 3- Imprimir grafo\n 4- Imprimir os graus de entrada e saída de um vértice\n 5- Verificar se um grafo é completo\n 9- Sair");
     scanf("%d", &var);
     while(var != 9){
         switch(var){
@@ -61,6 +90,11 @@ int main(){
                 scanf("%d", &custo);
                 InserirAresta(g, origem, destino, custo);                break;
             case 2:
+                puts("Informe de qual no de origem que você deseja excluir a arestra");
+                scanf("%d", &aux);
+                puts("Informe de qual no de destino que você deseja excluir a arestra");
+                scanf("%d", &aux_dest);
+                excluirAresta(g, aux, aux_dest );
                 break;
             case 3:
                 ImprimirGrafo(g, tam);
