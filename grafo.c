@@ -40,25 +40,24 @@ void ImprimirGrafo(lista **g, int n){
     }
 }
 void MostraGraus(lista **g,int tam){
-    int vetE[tam+1];
-    lista **p = g;
+   int vetE[tam+1];
     int vetS[tam+1];
     for(int i = 0; i< tam+1;i++){
         vetE[i] = 0;
         vetS[i] = 0;
     }
     for (int i = 1; i <= tam; i++) {
-        while (p[i] != NULL){
+        lista* p = g[i];
+        while (p != NULL){
             for (int j = 1; j <= tam; j++) {
-                if (p[i]->destino == j){
+                if (p->destino == j){
                     vetS[i]+= 1;
                     vetE[j]+= 1;
                 }
             }
-            p[i] = p[i]->prox;
+            p = p->prox;
         }
     }
-    free(p);
     for (int i = 1; i < tam+1; ++i) {
         printf("Vertice %d\n", (i));
         printf("gs (Grau de saida): %d\n",vetS[i]);
@@ -92,34 +91,32 @@ void excluirAresta(lista **g, int aux, int aux_dest){
 
 void TestaCompleta(lista **g,int tam){
     int vetE[tam+1];
-    lista **p = g;
     int vetS[tam+1];
     for(int i = 0; i< tam+1;i++){
         vetE[i] = 0;
         vetS[i] = 0;
     }
     for (int i = 1; i <= tam; i++) {
-        while (p[i] != NULL){
+        lista* p = g[i];
+
+        while (p != NULL){
             for (int j = 1; j <= tam; j++) {
-                if (p[i]->destino == j){
+                if (p->destino == j){
                     vetS[i]+= 1;
                     vetE[j]+= 1;
                 }
             }
-            p[i] = p[i]->prox;
+            p = p->prox;
         }
     }
 
     for(int i = 1;i <= tam; i++) {
         if(vetE[i] != (tam -1) || vetS[i] != (tam - 1)){
             printf("O grafo não é completo");
-            free(p);
-
             return ;
         }
     }
         puts("O grafo é completo");
-        free(p);
 }
 
 int main(){
@@ -156,6 +153,7 @@ int main(){
                 ImprimirGrafo(g, tam);
                 break;
             case 4:
+
                 MostraGraus(g,tam);
                 break;
             case 5:

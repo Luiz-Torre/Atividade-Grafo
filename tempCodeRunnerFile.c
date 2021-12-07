@@ -1,11 +1,1 @@
-  for (int i = 1; i <= tam; i++) {
-        while (g[i] != NULL){
-            for (int j = 1; j <= tam; j++) {
-                if (g[i]->destino == j){
-                    vetS[i]+= 1;
-                    vetE[j]+= 1;
-                }
-            }
-            g[i] = g[i]->prox;
-        }
-    }
+3 1 1 2 4 1 2 1 7 1 1 3 9 1 3 1 10 1 2 3 11 1 3 2 3
