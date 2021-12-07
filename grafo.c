@@ -74,7 +74,7 @@ void excluirAresta(lista **g, int aux, int aux_dest){
         free(atual);
         return;
     }
-    
+
     while (atual){
         lista_aux = atual;
         atual = atual -> prox;
@@ -152,14 +152,10 @@ int main(){
                 MostraGraus(g,tam);
                 break;
             case 5:
+
                 break;
             case 6:
-                break;
-            case 7:
-                break;
-            case 8:
-                break;
-            case 9:
+                exit();
                 break;
             default:
                 printf("\nValor Invalido");
