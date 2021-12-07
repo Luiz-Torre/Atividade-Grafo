@@ -78,10 +78,9 @@ int main(){
             default:
                 printf("\nValor Invalido \n");
                 break;
-            printf("Informe: \n 1- Inserir Arestra\n 2- Remover uma aresta\n 3- Imprimir grafo\n 4- Imprimir os graus de entrada e saída de um vértice\n 5- Verificar se um grafo é completo\n 6- Imprimir todos os caminhos entre uma origem e um destino\n 7- Imprimir o caminho mais curto\n 8- Imprimir o caminho de menor custo\n 9- Sair")
-            scanf("%d", &var);
-
         }
+        printf("Informe: \n 1- Inserir Arestra\n 2- Remover uma aresta\n 3- Imprimir grafo\n 4- Imprimir os graus de entrada e saída de um vértice\n 5- Verificar se um grafo é completo\n 6- Imprimir todos os caminhos entre uma origem e um destino\n 7- Imprimir o caminho mais curto\n 8- Imprimir o caminho de menor custo\n 9- Sair");
+        scanf("%d", &var);
     }
     return 0;
 }
