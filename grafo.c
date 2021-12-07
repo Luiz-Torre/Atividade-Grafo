@@ -72,8 +72,6 @@ void excluirAresta(lista **g, int aux, int aux_dest){
             free(atual);
             return ;
         }
-
-
     while(atual != NULL){
 
         if(atual -> destino == aux_dest){
