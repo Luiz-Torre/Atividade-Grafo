@@ -31,7 +31,6 @@ void ImprimirLista(lista *l){
     }
 }
 
-
 void ImprimirGrafo(lista **g, int n){
     int i;
     printf("Grafo");
@@ -47,15 +46,21 @@ int main(){
     lista **g;
     puts("Informe quantos nós terá seu grafo: \n");
     scanf("%d", &tam);
+    g = (lista**)malloc((tam+1)*sizeof(lista*));
     inicializar(g, tam);
     printf("Informe: \n 1- Inserir Arestra\n 2- Remover uma aresta\n 3- Imprimir grafo\n 4- Imprimir os graus de entrada e saída de um vértice\n 5- Verificar se um grafo é completo\n 6- Imprimir todos os caminhos entre uma origem e um destino\n 7- Imprimir o caminho mais curto\n 8- Imprimir o caminho de menor custo\n 9- Sair");
     scanf("%d", &var);
     while(var != 9){
         switch(var){
             case 1:
+                puts("Informe qual a origem: \n");
+                scanf("%d", &origem);
+                puts("Informe qual o destino: \n");
+                scanf("%d", &destino);
+                puts("Informe qual o custo: \n");
+                scanf("%d", &custo);
                 InserirAresta(g, origem, destino, custo);                break;
             case 2:
-
                 break;
             case 3:
                 ImprimirGrafo(g, tam);
@@ -75,10 +80,9 @@ int main(){
             default:
                 printf("\nValor Invalido \n");
                 break;
-            printf("Informe: \n 1- Inserir Arestra\n 2- Remover uma aresta\n 3- Imprimir grafo\n 4- Imprimir os graus de entrada e saída de um vértice\n 5- Verificar se um grafo é completo\n 6- Imprimir todos os caminhos entre uma origem e um destino\n 7- Imprimir o caminho mais curto\n 8- Imprimir o caminho de menor custo\n 9- Sair")
-            scanf("%d", &var);
-
         }
+        printf("Informe: \n 1- Inserir Arestra\n 2- Remover uma aresta\n 3- Imprimir grafo\n 4- Imprimir os graus de entrada e saída de um vértice\n 5- Verificar se um grafo é completo\n 6- Imprimir todos os caminhos entre uma origem e um destino\n 7- Imprimir o caminho mais curto\n 8- Imprimir o caminho de menor custo\n 9- Sair");
+        scanf("%d", &var);
     }
     return 0;
 }
